@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Creator: Justa Liang
 
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/finance/VestingWallet.sol";

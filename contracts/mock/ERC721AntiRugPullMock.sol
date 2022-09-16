@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Creators: Justa Liang
 
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.13;
 
 import "../ERC721AntiRugPull.sol";
 

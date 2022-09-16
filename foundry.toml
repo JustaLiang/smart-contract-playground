@@ -1,0 +1,12 @@
+[default]
+src = 'contracts'
+out = 'artifacts'
+libs = ['node_modules']
+solc_version = '0.8.13'
+remappings = [
+    '@openzeppelin/=node_modules/@openzeppelin/',
+    'ds-test/=lib/forge-std/lib/ds-test/src/',
+    'forge-std/=lib/forge-std/src/',
+]
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config
