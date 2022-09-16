@@ -3,7 +3,15 @@ import "@nomicfoundation/hardhat-toolbox";
 import "hardhat-deploy";
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.17",
+  solidity: {
+    version: "0.8.13",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 20_000,
+      },
+    },
+  },
   namedAccounts: {
     deployer: 0,
   },

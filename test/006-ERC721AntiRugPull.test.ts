@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { ethers } from "hardhat";
 import { setupERC721AntiRugPull } from "./fixture/setup-contracts";
 
 describe("ERC721AntiRugPull", function () {
