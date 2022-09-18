@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { setupReceiver } from "./fixture/setup-contracts";
+import { setupReceiver } from "../fixture/setup-contracts";
 
 describe("Receiver", function () {
   let tx, receipt;
@@ -14,7 +14,7 @@ describe("Receiver", function () {
     receipt = await tx.wait();
     expect(await contract.userDepositAmount(user1.address))
     .equal(amount);
-    console.log("deposit(): ", receipt.gasUsed.toNumber());
+    // console.log("deposit(): ", receipt.gasUsed.toNumber());
   });
 
   it("Desposit fund by transfering ETH directly", async function () {
@@ -29,6 +29,6 @@ describe("Receiver", function () {
     receipt = await tx.wait();
     expect(await contract.userDepositAmount(user2.address))
     .equal(amount);
-    console.log("receive(): ", receipt.gasUsed.toNumber());
+    // console.log("receive(): ", receipt.gasUsed.toNumber());
   });
 });

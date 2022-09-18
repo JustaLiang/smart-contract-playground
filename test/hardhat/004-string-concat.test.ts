@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { setupStringConcat } from "./fixture/setup-contracts";
+import { setupStringConcat } from "../fixture/setup-contracts";
 
 describe("StringConcat", function () {
   let tx;

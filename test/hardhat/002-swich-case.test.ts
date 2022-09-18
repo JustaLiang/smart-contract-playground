@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { setupSwitchCase } from "./fixture/setup-contracts";
+import { setupSwitchCase } from "../fixture/setup-contracts";
 
 describe("SwitchCase", function () {
   let tx;

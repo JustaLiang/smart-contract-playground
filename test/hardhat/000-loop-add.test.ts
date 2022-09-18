@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { setupLoopAdd } from "./fixture/setup-contracts";
+import { setupLoopAdd } from "../fixture/setup-contracts";
 
 describe("LoopAdd", function () {
   let tx;

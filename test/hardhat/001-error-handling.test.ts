@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { setupErrorHandling } from "./fixture/setup-contracts";
+import { setupErrorHandling } from "../fixture/setup-contracts";
 
 describe("ErrorHandling", function () {
   let tx;

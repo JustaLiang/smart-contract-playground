@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { setupERC721AntiRugPull } from "./fixture/setup-contracts";
+import { setupERC721AntiRugPull } from "../fixture/setup-contracts";
 
 describe("ERC721AntiRugPull", function () {
   let tx, receipt, gasFee;

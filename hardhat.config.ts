@@ -19,6 +19,9 @@ const config: HardhatUserConfig = {
     enabled: true,
     currency: "USD",
   },
+  paths: {
+    tests: "./test/hardhat"
+  }
 };
 
 export default config;

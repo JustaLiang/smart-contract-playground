@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { setupTryCatch } from "./fixture/setup-contracts";
+import { setupTryCatch } from "../fixture/setup-contracts";
 
 describe("TryCatch", function () {
   let tx;
