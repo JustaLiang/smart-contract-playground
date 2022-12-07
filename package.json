@@ -20,6 +20,7 @@
     "@types/mocha": "^9.1.0",
     "@types/node": ">=12.0.0",
     "chai": "^4.2.0",
+    "erc721a": "^4.2.3",
     "ethers": "^5.4.7",
     "hardhat": "^2.11.2",
     "hardhat-deploy": "^0.11.15",
@@ -35,6 +36,8 @@
     "test": "hardhat test",
     "runs": "hardhat run",
     "clean": "hardhat clean",
-    "typechain": "hardhat typechain"
+    "typechain": "hardhat typechain",
+    "localhost": "hardhat node",
+    "console": "hardhat console"
   }
 }

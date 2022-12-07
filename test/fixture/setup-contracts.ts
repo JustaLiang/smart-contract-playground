@@ -7,7 +7,7 @@ import {
   TryCatch__factory,
   StringConcat__factory,
   Receiver__factory,
-  ERC721AntiRugPullMock__factory,
+  ERC721RugGripperMock__factory,
 } from "../../typechain-types";
 
 export const setupLoopAdd = deployments.createFixture(
@@ -110,16 +110,15 @@ export const setupReceiver = deployments.createFixture(
   }
 );
 
-export const setupERC721AntiRugPull = deployments.createFixture(
+export const setupERC721RugGripper = deployments.createFixture(
   async ({deployments, ethers}, options) => {
-    await deployments.fixture(["ERC721AntiRugPull"]);
-    const artifact = await deployments.get("ERC721AntiRugPullMock");
+    await deployments.fixture(["ERC721RugGripper"]);
+    const artifact = await deployments.get("ERC721RugGripperMock");
     const [ deployer, ...users ] = await ethers.getSigners();
     const provider = deployer.provider;
-    const contract = ERC721AntiRugPullMock__factory.connect(artifact.address, deployer);
+    const contract = ERC721RugGripperMock__factory.connect(artifact.address, deployer);
     const beneficiary = await contract.beneficiary();
     const maxSupply = await contract.MAX_SUPPLY();
-    const reportThresold = await contract.threshold();
     const mintPrice = await contract.MINT_PRICE();
     const startVestingTime = await contract.start();
     const duration = await contract.duration();
@@ -129,7 +128,6 @@ export const setupERC721AntiRugPull = deployments.createFixture(
       beneficiary,
       users,
       maxSupply,
-      reportThresold,
       mintPrice,
       startVestingTime,
       duration,

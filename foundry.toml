@@ -3,7 +3,6 @@ src = 'contracts'
 out = 'artifacts'
 test = 'test/foundry'
 libs = ['node_modules', 'lib']
-cache_path = ['cache-forge']
 solc_version = '0.8.13'
 remappings = [
     '@openzeppelin/=node_modules/@openzeppelin/',
