@@ -21,10 +21,10 @@ contract ERC721RugGripperMock is ERC721RugGripper {
     uint256 public totalSupply;
 
     /// @dev Setup ERC721, VestingWallet
-    constructor()
+    constructor(address beneficiary)
         ERC721("RugGripper", "RUGR")
         VestingWallet(
-            _msgSender(),
+            beneficiary,
             uint64(block.timestamp + 1 weeks),
             DURATION_SEC
         )

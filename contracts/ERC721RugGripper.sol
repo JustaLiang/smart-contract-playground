@@ -44,6 +44,7 @@ abstract contract ERC721RugGripper is ERC721, IERC721Receiver, VestingWallet {
             payable(_msgSender()),
             funding - _vestingSchedule(funding, uint64(block.timestamp))
         );
+        release();
     }
 
     /// @notice Re-mint tokens after they are give back to contract

@@ -6,6 +6,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await hre.getNamedAccounts();
   await deploy("ERC721RugGripperMock", {
     from: deployer,
+    args: [deployer],
     log: true,
   });
 };

@@ -12,11 +12,13 @@ contract ERC721RugGripperTest is Test {
     uint256 public start;
     uint256 public duration;
     address public contractAddr;
+    address public deployer;
     address public alice;
     address public bob;
 
     function setUp() public {
-        MockRG = new ERC721RugGripperMock();
+        deployer = makeAddr("deployer");
+        MockRG = new ERC721RugGripperMock(deployer);
         maxSupply = MockRG.MAX_SUPPLY();
         mintPrice = MockRG.MINT_PRICE();
         beneficiary = MockRG.beneficiary();
