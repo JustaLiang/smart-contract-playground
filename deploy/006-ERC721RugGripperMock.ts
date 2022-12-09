@@ -10,4 +10,4 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   });
 };
 export default func;
-func.tags = ["ERC721RugGripperMock"];
+func.tags = ["ERC721RugGripper"];

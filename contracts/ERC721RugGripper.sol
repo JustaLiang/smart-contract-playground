@@ -3,17 +3,15 @@
 
 pragma solidity ^0.8.13;
 
-import "erc721a/contracts/ERC721A.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import "@openzeppelin/contracts/finance/VestingWallet.sol";
 
 /**
  * @title ERC721 with anti-rug-pull mechanism
  * @dev This contract combines ERC721A, ERC721R and VestingWallet.
  */
-abstract contract ERC721RugGripper is ERC721A, VestingWallet {
-    /// @dev Assume all tokens are same price
-    uint256 internal _mintPrice;
-
+abstract contract ERC721RugGripper is ERC721, IERC721Receiver, VestingWallet {
     /// @dev User redeem unowned token
     error NotRedeemByOwner(uint256);
 
@@ -22,6 +20,9 @@ abstract contract ERC721RugGripper is ERC721A, VestingWallet {
 
     /// @dev Payment lower than amount * price
     error NotEnoughPayment();
+
+    /// @dev Assume all tokens are same price
+    uint256 internal _mintPrice;
 
     /// @dev Setup mint price
     constructor(uint256 mintPrice) {
@@ -36,7 +37,7 @@ abstract contract ERC721RugGripper is ERC721A, VestingWallet {
             uint256 tokenId = tokenIdList[i];
             if (ownerOf(tokenId) != _msgSender())
                 revert NotRedeemByOwner(tokenId);
-            transferFrom(_msgSender(), address(this), tokenId);
+            safeTransferFrom(_msgSender(), address(this), tokenId);
             funding += _mintPrice;
         }
         Address.sendValue(
@@ -51,20 +52,20 @@ abstract contract ERC721RugGripper is ERC721A, VestingWallet {
         uint256 payment = 0;
         for (uint256 i = 0; i < amount; i++) {
             uint256 tokenId = tokenIdList[i];
-            if (ownerOf(tokenId) != _msgSender()) revert CanNotReMint(tokenId);
-            transferFrom(address(this), _msgSender(), tokenId);
+            if (ownerOf(tokenId) != address(this)) revert CanNotReMint(tokenId);
+            _safeTransfer(address(this), _msgSender(), tokenId, "");
             payment += _mintPrice;
         }
         if (msg.value < payment) revert NotEnoughPayment();
     }
 
-    /// @notice Override _mint to check enough payment
-    function _safeMint(
-        address to,
-        uint256 quantity,
-        bytes memory _data
-    ) internal override {
-        if (quantity * _mintPrice < msg.value) revert NotEnoughPayment();
-        ERC721A._safeMint(to, quantity, _data);
+    /// @notice Override ERC721A__IERC721Receiver.onERC721Received
+    function onERC721Received(
+        address operator,
+        address from,
+        uint256 tokenId,
+        bytes calldata data
+    ) public virtual override returns (bytes4) {
+        return IERC721Receiver.onERC721Received.selector;
     }
 }
